@@ -4,6 +4,8 @@ import "./globals.css";
 import { Open_Sans } from "next/font/google";
 import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
 import { ConvexClientProvider } from "@/components/convex-client-provider";
+import { Modals } from "@/components/modals";
+import { Toaster } from "@/components/ui/sonner";
 
 const openSans = Open_Sans({
   subsets: ["latin"], // Specify the subsets needed (e.g. 'latin')
@@ -36,7 +38,11 @@ export default function RootLayout({
     <ConvexAuthNextjsServerProvider>
       <html lang="en">
         <body className={`${openSans.className} antialiased`}>
-          <ConvexClientProvider>{children}</ConvexClientProvider>
+          <ConvexClientProvider>
+            <Toaster />
+            <Modals />
+            {children}
+          </ConvexClientProvider>
         </body>
       </html>
     </ConvexAuthNextjsServerProvider>
